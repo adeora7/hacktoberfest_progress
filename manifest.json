@@ -1,0 +1,13 @@
+{
+  "name" : "Hacktoberfest Progress Checker",
+  "version" : "1.1",
+  "description" : "Check your Hacktoberfest 2017 progress here. It is a fan made chrome extension and is not affiliated to hacktoberfest officially.",
+  "permissions": [
+    "storage"
+  ],
+  "browser_action": {
+     "default_icon": "icon.png",
+     "default_popup": "popup.html"
+  },
+  "manifest_version": 2
+}

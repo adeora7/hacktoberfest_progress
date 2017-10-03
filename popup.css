@@ -1,0 +1,48 @@
+body{
+  min-width: 300px;
+  min-height: 400px;
+}
+
+#header{
+  width: 100%;
+  font-size: 25px;
+  text-align: center;
+  height: 20%;
+}
+
+#main{
+  margin-top: 50px;
+}
+
+#savedAccounts{
+
+}
+
+.eachSavedAccount{
+  margin: 5px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.eachSavedAccount:hover{
+  text-decoration: underline;
+}
+
+#newAccount{
+  margin-top: 50px;
+  height: 100px;
+}
+
+#githubHandle{
+  height: 40px;
+  width: 170px;
+}
+
+#check{
+  height: 40px;
+  width: 170px;
+}
+
+#result{
+  margin-top: 20px;
+}
