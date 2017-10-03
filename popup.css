@@ -1,6 +1,8 @@
 body{
   min-width: 300px;
   min-height: 400px;
+  background-color: #29328f;
+  color: white;
 }
 
 #header{
@@ -9,13 +11,12 @@ body{
   text-align: center;
   height: 20%;
 }
-
-#main{
-  margin-top: 50px;
+#header > a >img{
+  width: 300px;
 }
 
-#savedAccounts{
-
+#main{
+  margin-top: 10px;
 }
 
 .eachSavedAccount{
@@ -29,20 +30,40 @@ body{
 }
 
 #newAccount{
-  margin-top: 50px;
-  height: 100px;
+  min-height: 100px;
 }
 
 #githubHandle{
-  height: 40px;
-  width: 170px;
+  height: 30px;
+  width: 160px;
+  padding: 5px;
 }
 
 #check{
   height: 40px;
   width: 170px;
+  background-color: #fe615f;
+  border: 0px;
+  color: white;
+  font-size: 16px;
 }
 
 #result{
   margin-top: 20px;
+}
+
+#resultHandle{
+  text-decoration: underline;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+#prCompleteCount{
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+#message{
+  font-size: 18px;
 }

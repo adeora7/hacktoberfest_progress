@@ -1,4 +1,28 @@
-// Query  //
+var inputHandle = document.getElementById("githubHandle");
+var btn = document.getElementById("check");
+
+inputHandle.onkeydown = function(event){
+	if(event.keyCode == 13)
+	{
+		btn.click();
+	}
+}
+btn.onclick = function()
+{
+	console.log("hello world");
+    var handle = document.getElementById("githubHandle").value;
+	console.log(handle);
+	var result = document.getElementById("result");
+	if(handle != "" && handle != null)
+	{
+		result.innerHTML = "Loading...";
+		getData(handle);
+	}
+	else
+	{
+		result.innerHTML = "Please enter a valid Github Username";
+	}
+}
 
 function getData(handle){
 
@@ -7,9 +31,13 @@ function getData(handle){
 
   var req = new XMLHttpRequest();
   req.onreadystatechange = function(){
+  	var res = "";
     if(this.readyState == 4 && this.status == 200){
       var data = JSON.parse(req.responseText);
-      document.getElementById("prCompleteCount").innerHTML = (data['total_count']>4?"4":data['total_count'])+ "/4";
+      // document.getElementById("resultHandle").innerHTML = handle;
+      res +="<div id='resultHandle'>"+handle+"</div>";
+      var count = (data['total_count']>4?"4":data['total_count'])+ "/4";
+      res +="<div id='prCompleteCount'>"+count+"</div>";
       var message = "";
       switch(data['total_count']){
         case 0:
@@ -28,7 +56,8 @@ function getData(handle){
           message = "Congratulations, you have completed hacktoberfest 2017.";
 
       }
-      document.getElementById("message").innerHTML = message;
+      res +="<div id='message'>"+message+"</div>";
+      document.getElementById("result").innerHTML = res;
     }
   };
   req.open("GET", reqUrl, true);
