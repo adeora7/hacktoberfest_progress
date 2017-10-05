@@ -60,7 +60,9 @@ function getData(handle){
       var prs = data['items'].map((v, i) => {
         return `<li><a target="_blank" href="${v['html_url']}">#${v['number']} - ${v['title']}</a></li>`;
       });
-      res += `<div id="prList">Pull requests: <ul>${prs}</ul></div>`
+	  if (data['items'].length > 0) {
+	      res += `<div id="prList">Pull requests: <ul>${prs}</ul></div>`
+	  }
 
       document.getElementById("result").innerHTML = res;
     }
