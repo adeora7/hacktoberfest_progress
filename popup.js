@@ -57,10 +57,10 @@ function getData(handle){
       res +="<div id='prCompleteCount'>"+count+"</div>";
       var message = getMessage(data['total_count']);
       res +="<div id='message'>"+message+"</div>";
-      var prs = data['items'].map((v, i) => {
-        return `<li><a target="_blank" href="${v['html_url']}">#${v['number']} - ${v['title']}</a></li>`;
-      });
 	  if (data['items'].length > 0) {
+	      var prs = data['items'].map((v, i) => {
+	        return `<li><a target="_blank" href="${v['html_url']}">#${v['number']} - ${v['title']}</a></li>`;
+	      });
 	      res += `<div id="prList">Pull requests: <ul>${prs}</ul></div>`
 	  }
 
