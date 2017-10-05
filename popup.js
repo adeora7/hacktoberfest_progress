@@ -52,18 +52,20 @@ function getData(handle){
       var data = JSON.parse(req.responseText);
       console.log(data);
       // document.getElementById("resultHandle").innerHTML = handle;
+      var newestPRs = data.total_count > 4 ? data.items.slice(0, 4) : data.items;
       res +="<div id='resultHandle'>"+handle+"</div>";
       var count = (data['total_count']>4?"4":data['total_count'])+ "/4";
       res +="<div id='prCompleteCount'>"+count+"</div>";
       var message = getMessage(data['total_count']);
       res +="<div id='message'>"+message+"</div>";
-	  if (data['items'].length > 0) {
-	      var prs = data['items'].map((v, i) => {
-	        return `<li><a target="_blank" href="${v['html_url']}">#${v['number']} - ${v['title']}</a></li>`;
-	      });
-	      res += `<div id="prList">Pull requests: <ul>${prs}</ul></div>`
-	  }
-
+      
+      if (newestPRs.length > 0) {
+          var prs = newestPRs.map((v, i) => {
+          return `<li><a target="_blank" href="${v['html_url']}">#${v['number']} - ${v['title']}</a></li>`;
+        });
+        res += `<div id="prList">Pull requests: <ul>${prs}</ul></div>`
+      }
+      
       document.getElementById("result").innerHTML = res;
     }
   };
