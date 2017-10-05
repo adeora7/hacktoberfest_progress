@@ -1,6 +1,18 @@
 var inputHandle = document.getElementById("githubHandle");
 var btn = document.getElementById("check");
 
+var handle = document.getElementById("githubHandle").value;
+if (handle === "") {
+	chrome.storage.sync.get("lastSearched", function (data){
+		var storedHandle = data['lastSearched'];
+  	  if (storedHandle != "" && storedHandle != null) {
+	    console.log(storedHandle);
+		document.getElementById("githubHandle").value = storedHandle;
+		getData(storedHandle);
+	  }
+    });
+}
+
 inputHandle.onkeydown = function(event){
 	if(event.keyCode == 13)
 	{
@@ -9,7 +21,6 @@ inputHandle.onkeydown = function(event){
 }
 btn.onclick = function()
 {
-	console.log("hello world");
     var handle = document.getElementById("githubHandle").value;
 	console.log(handle);
 	var result = document.getElementById("result");
@@ -47,26 +58,27 @@ function getData(handle){
 
   var req = new XMLHttpRequest();
   req.onreadystatechange = function(){
-  	var res = "";
     if(this.readyState == 4 && this.status == 200){
-      var data = JSON.parse(req.responseText);
-      console.log(data);
-      // document.getElementById("resultHandle").innerHTML = handle;
-      res +="<div id='resultHandle'>"+handle+"</div>";
-      var count = (data['total_count']>4?"4":data['total_count'])+ "/4";
-      res +="<div id='prCompleteCount'>"+count+"</div>";
-      var message = getMessage(data['total_count']);
-      res +="<div id='message'>"+message+"</div>";
-      var prs = data['items'].map((v, i) => {
-        return `<li><a target="_blank" href="${v['html_url']}">#${v['number']} - ${v['title']}</a></li>`;
-      });
-      res += `<div id="prList">Pull requests: <ul>${prs}</ul></div>`
+		var data = JSON.parse(req.responseText);
+		chrome.storage.sync.set({"lastSearched": handle}, function (){
+			console.log(data);
+			var res = "";
+			// document.getElementById("resultHandle").innerHTML = handle;
+		    res +="<div id='resultHandle'>"+handle+"</div>";
+		    var count = (data['total_count']>4?"4":data['total_count'])+ "/4";
+		    res +="<div id='prCompleteCount'>"+count+"</div>";
+		    var message = getMessage(data['total_count']);
+		    res +="<div id='message'>"+message+"</div>";
+		    var prs = data['items'].map((v, i) => {
+		  	return `<li><a target="_blank" href="${v['html_url']}">#${v['number']} - ${v['title']}</a></li>`;
+		    });
+		    res += `<div id="prList">Pull requests: <ul>${prs}</ul></div>`
 
-      document.getElementById("result").innerHTML = res;
+		    document.getElementById("result").innerHTML = res;
+	    });
     }
   };
   req.open("GET", reqUrl, true);
   // req.setRequestHeader('Cache-Control','max-age=0');
   req.send();
-
 }
