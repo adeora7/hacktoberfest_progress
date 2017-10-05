@@ -24,6 +24,22 @@ btn.onclick = function()
 	}
 }
 
+function getMessage(total_count){
+  var message = "";
+  switch(total_count){
+    case 0:
+      return "It is never too late to start.";
+    case 1:
+      return "Still long way to go.";
+    case 2:
+      return "Awesome, you are half way through.";
+    case 3:
+      return "Just one more to go.";
+    default:
+      return "Congratulations, you have completed hacktoberfest 2017.";
+  }
+}
+
 function getData(handle){
 
   var reqUrl = "https://api.github.com/search/issues?q=author%3A"+handle+"+type%3Apr"+
@@ -34,29 +50,18 @@ function getData(handle){
   	var res = "";
     if(this.readyState == 4 && this.status == 200){
       var data = JSON.parse(req.responseText);
+      console.log(data);
       // document.getElementById("resultHandle").innerHTML = handle;
       res +="<div id='resultHandle'>"+handle+"</div>";
       var count = (data['total_count']>4?"4":data['total_count'])+ "/4";
       res +="<div id='prCompleteCount'>"+count+"</div>";
-      var message = "";
-      switch(data['total_count']){
-        case 0:
-          message = "It is never too late to start.";
-          break;
-        case 1:
-          message = "Still long way to go.";
-          break;
-        case 2:
-          message = "Awesome, you are half way through.";
-          break;
-        case 3:
-          message = "Just one more to go.";
-          break;
-        default:
-          message = "Congratulations, you have completed hacktoberfest 2017.";
-
-      }
+      var message = getMessage(data['total_count']);
       res +="<div id='message'>"+message+"</div>";
+      var prs = data['items'].map((v, i) => {
+        return `<li><a target="_blank" href="${v['html_url']}">#${v['number']} - ${v['title']}</a></li>`;
+      });
+      res += `<div id="prList">Pull requests: <ul>${prs}</ul></div>`
+
       document.getElementById("result").innerHTML = res;
     }
   };
