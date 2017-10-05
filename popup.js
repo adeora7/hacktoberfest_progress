@@ -55,6 +55,7 @@ function getData(handle) {
         : data['total_count']) + "/4";
       res += "<div id='prCompleteCount'>" + count + "</div>";
       var message = getMessage(data['total_count']);
+
       res += "<div id='message'>" + message + "</div>";
       var prs = data['items'].map((v, i) => {
         return (`
@@ -64,6 +65,8 @@ function getData(handle) {
           </a>
         </li>`);
       });
+
+
 
       console.log(prs);
       var dispUpTo = prs.length <= 4
