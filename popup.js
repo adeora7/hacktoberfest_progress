@@ -56,14 +56,20 @@ function getData(handle){
       var count = (data['total_count']>4?"4":data['total_count'])+ "/4";
       res +="<div id='prCompleteCount'>"+count+"</div>";
       var message = getMessage(data['total_count']);
+      if (data['total_count'] > 0)
+      {
       res +="<div id='message'>"+message+"</div>";
       var prs = data['items'].map((v, i) => {
         return `<li><a target="_blank" href="${v['html_url']}">#${v['number']} - ${v['title']}</a></li>`;
       });
-      res += `<div id="prList">Pull requests: <ul>${prs}</ul></div>`
-
+      res += `<div id="prList">Pull requests: <ul>${prs}</ul></div>`   
+      }
+      else
+      {
+        res +="<div id='message'>"+message+"</div>";
+      }
       document.getElementById("result").innerHTML = res;
-    }
+  }
   };
   req.open("GET", reqUrl, true);
   // req.setRequestHeader('Cache-Control','max-age=0');
