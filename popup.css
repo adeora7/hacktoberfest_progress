@@ -29,8 +29,26 @@ body{
   text-decoration: underline;
 }
 
+.rounded{
+  border-radius: 15px;
+  cursor: pointer;
+  margin-right: 5px;
+  height: 30px;
+  width: 30px;
+}
+
+#mostRecentUsers{
+  margin-bottom: 10px;
+}
+
 #newAccount{
   min-height: 100px;
+}
+
+#avatar{
+  height: 45px;
+  padding: 5px;
+  width: 45px;
 }
 
 #githubHandle{
