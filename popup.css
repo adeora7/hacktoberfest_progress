@@ -57,15 +57,6 @@ body{
   padding: 5px;
 }
 
-#check{
-  height: 40px;
-  width: 170px;
-  background-color: #fe615f;
-  border: 0px;
-  color: white;
-  font-size: 16px;
-}
-
 #result{
   margin-top: 20px;
 }
@@ -84,6 +75,11 @@ body{
 
 #message{
   font-size: 18px;
+  text-align: center;
+}
+
+#prList ul{
+  padding-left: 0;
 }
 
 #prList li {
@@ -91,5 +87,33 @@ body{
 }
 
 #prList li a{
-  color: white;
+  color: #29328f;
+}
+
+#overlay{
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    visibility: collapse;
+}
+
+#dialog{
+    border: 0px;
+    text-align: center;
+}
+
+#show{
+  visibility: collapse;
+}
+
+.button{
+    height: 40px;
+    width: 170px;
+    background-color: #fe615f;
+    border: 0px;
+    color: white;
+    font-size: 16px;
 }

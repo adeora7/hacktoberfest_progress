@@ -8,30 +8,24 @@
   </head>
   <body>
     <div id="header">
-      <a href="https://hacktoberfest.digitalocean.com" target="blank"><img src="logo.png"></a>
+      <a href="https://hacktoberfest.digitalocean.com" target="_blank"><img src="logo.png"></a>
     </div>
     <div id="main" class="flex-column align-center justify-center">
 
       <div id="mostRecentUsers" class="flex-row align-center justify-space-around"></div>
       <div id="newAccount" class="flex-column align-center justify-space-around">
         <input type="text" placeholder="Github Username" id="githubHandle">
-        <button id="check">Check Progress</button>
+        <button id="check" class="button">Check Progress</button>
+        <button id="show" class="button">Show Results</button>
       </div>
       <div id="result" class="flex-column justify-start align-center">
-        <!-- <div id="prDetails" class="flex-column justify-start align-start" style="display: none">
-          <div class="eachPr">
-            CSS for subscribe button changed, description, Open
-          </div>
-          <div class="eachPr">
-            CSS for subscribe button changed, description, Open
-          </div>
-          <div class="eachPr">
-            CSS for subscribe button changed, description, Open
-          </div>
-          <div class="eachPr">
-            CSS for subscribe button changed, description, Open
-          </div>
-        </div> -->
+      </div>
+      <div id="overlay">
+        <dialog id="dialog">
+          <div id="dialogContent"></div>
+          </br>
+          <button id="closeBtn" class="button">Close</button>
+        </dialog>
       </div>
     </div>
 

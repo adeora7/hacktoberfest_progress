@@ -25,6 +25,14 @@ btn.onclick = function() {
 		result.innerHTML = "Please enter a valid Github Username";
 	}
 }
+document.getElementById("show").onclick = function() {
+	document.getElementById("dialog").showModal();
+	document.getElementById("overlay").style.visibility = "visible";
+}
+document.getElementById("closeBtn").onclick = function() {
+	document.getElementById("dialog").close();
+	document.getElementById("overlay").style.visibility = "collapse";
+}
 
 function getMessage(total_count) {
   var message = "";
@@ -99,16 +107,22 @@ function getData(handle) {
         res += "<div id='prCompleteCount'>" + count + "</div>";
         var message = getMessage(data["total_count"]);
         res += "<div id='message'>" + message + "</div>";
+		document.getElementById("result").innerHTML = res;
 
 		var newestPRs = data.total_count > 4 ? data.items.slice(0, 4) : data.items;
         if (newestPRs.length > 0) {
-          var prs = newestPRs.map((v, i) => {
+		  var content = "";
+		  var prs = newestPRs.map((v, i) => {
             return `<li><a target="_blank" href="${v["html_url"]}">#${v["number"]} - ${v["title"]}</a></li>`;
 	      });
-          res += `<div id="prList">Pull requests: <ul>${prs}</ul></div>`;
-        }
+          content += `<div id="prList"><h2>Pull requests</h2><ul>${prs}</ul></div>`;
 
-	    document.getElementById("result").innerHTML = res;
+		  document.getElementById("dialogContent").innerHTML = content;
+  	      document.getElementById("show").style.visibility = "visible";
+	  	} else {
+	      document.getElementById("show").style.visibility = "collapse";
+	  	}
+
 	  });
     }
   };
