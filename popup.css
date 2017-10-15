@@ -37,12 +37,21 @@ body{
   width: 30px;
 }
 
+.button{
+    height: 40px;
+    width: 170px;
+    background-color: #fe615f;
+    border: 0px;
+    color: white;
+    font-size: 16px;
+}
+
 #mostRecentUsers{
   margin-bottom: 10px;
 }
 
 #newAccount{
-  min-height: 100px;
+  min-height: 140px;
 }
 
 #avatar{
@@ -55,10 +64,12 @@ body{
   height: 30px;
   width: 160px;
   padding: 5px;
+  font-size: 16px;
+  text-align: center;
 }
 
 #result{
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 #resultHandle{
@@ -107,13 +118,4 @@ body{
 
 #show{
   visibility: collapse;
-}
-
-.button{
-    height: 40px;
-    width: 170px;
-    background-color: #fe615f;
-    border: 0px;
-    color: white;
-    font-size: 16px;
 }
