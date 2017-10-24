@@ -24,3 +24,7 @@ After installation, click on the extension icon on the right of the address bar,
 [zuik](https://github.com/zuik)
 [raindogg](https://github.com/raindogg)
 [lmcjt37](https://github.com/lmcjt37)
+[ehnydeel](https://github.com/ehnydeel)
+[bhaveshgohel](https://github.com/bhaveshgohel)
+[rafaelklaessen](https://github.com/rafaelklaessen)
+[kincade71](https://github.com/kincade71)
