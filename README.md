@@ -23,4 +23,7 @@ After installation, click on the extension icon on the right of the address bar,
 [adeora7](https://github.com/adeora7)
 [zuik](https://github.com/zuik)
 [raindogg](https://github.com/raindogg)
-[lmcjt37](https://github.com/lmcjt37)
+[ehnydeel](https://github.com/ehnydeel)
+[bhaveshgohe](https://github.com/bhaveshgohel)
+[rafaelklaessen](https://github.com/rafaelklaessen)
+
