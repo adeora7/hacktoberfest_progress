@@ -3,10 +3,10 @@ body{
   min-height: 400px;
   background-color: #29328f;
   color: white;
-	background-image: url('flourish-top.svg');
-	background-repeat: no-repeat;
-	background-position: 0 0;
-	background-size: 50%;
+  background-image: url('flourish-top.svg');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 50%;
 }
 
 #header{
@@ -14,7 +14,7 @@ body{
   font-size: 25px;
   text-align: center;
   height: 20%;
-	margin-top: 65px;
+  margin-top: 65px;
 }
 #header > a >img{
   width: 300px;
@@ -43,24 +43,24 @@ body{
 }
 
 .button{
-	height: 40px;
-	width: 175px;
-	background-color: #fe615f;
-	border: 0px;
-	border-radius: 3px;
-	outline: none;
-	color: white;
-	cursor: pointer;
-	font-size: 14px;
+  height: 40px;
+  width: 175px;
+  background-color: #fe615f;
+  border: 0px;
+  border-radius: 3px;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 #check {
-	box-shadow: 0 2px 30px rgba(9,11,29,0.3);
-	transition: background-color 0.25s ease-in-out;
+  box-shadow: 0 2px 30px rgba(9,11,29,0.3);
+  transition: background-color 0.25s ease-in-out;
 }
 #check:hover {
-	background-color: #ff4946;
-	color: #fff;
+  background-color: #ff4946;
+  color: #fff;
 }
 
 #newAccount{
@@ -79,18 +79,18 @@ body{
   padding: 5px;
   font-size: 16px;
   text-align: center;
-	color: white;
-	border: 0;
-	border-bottom: 1px solid white;
-	background: #29328f;
-	margin-bottom: 10px;
-	outline: none;
-	transition : border 500ms ease-out;
+  color: white;
+  border: 0;
+  border-bottom: 1px solid white;
+  background: #29328f;
+  margin-bottom: 10px;
+  outline: none;
+  transition : border 500ms ease-out;
 }
 
 #githubHandle::placeholder,
 #githubHandle::-webkit-placeholder {
-	color: #ececec;
+  color: #ececec;
 }
 
 #result{
