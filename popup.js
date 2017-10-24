@@ -15,6 +15,17 @@ inputHandle.onkeydown = function(event){
 		btn.click();
 	}
 }
+
+document.getElementById("show").onclick = function() {
+	document.getElementById("dialog").showModal();
+	document.getElementById("overlay").style.visibility = "visible";
+}
+
+document.getElementById("closeBtn").onclick = function() {
+	document.getElementById("dialog").close();
+	document.getElementById("overlay").style.visibility = "collapse";
+}
+
 btn.onclick = function() {
   var handle = document.getElementById("githubHandle").value;
 	var result = document.getElementById("result");
@@ -120,16 +131,22 @@ function initData(handle) {
 			res += "<div id='prCompleteCount'>" + count + "</div>";
 			var message = getMessage(prCount);
 			res += "<div id='message'>" + message + "</div>";
+			document.getElementById("result").innerHTML = res;
 
 			var newestPRs = prCount > 4 ? data.items.slice(0, 4) : data.items;
-			if (newestPRs.length > 0) {
+	        if (newestPRs.length > 0) {
+			  var content = "";
 			  var prs = newestPRs.map((v, i) => {
-				return `<li><a target="_blank" href="${v["html_url"]}">#${v["number"]} - ${v["title"]}</a></li>`;
-			  });
-			  res += `<div id="prList">Pull requests: <ul>${prs}</ul></div>`;
-			}
+	            return `<li><a target="_blank" href="${v["html_url"]}">#${v["number"]} - ${v["title"]}</a></li>`;
+		      });
+	          content += `<div id="prList"><h2>Pull requests</h2><ul>${prs}</ul></div>`;
 
-		  document.getElementById("result").innerHTML = res;
+			  document.getElementById("dialogContent").innerHTML = content;
+	  	      document.getElementById("show").style.visibility = "visible";
+		  	} else {
+		      document.getElementById("show").style.visibility = "collapse";
+		  	}
+
 		});
 	})
 	.catch(function(error) {
