@@ -16,7 +16,7 @@ Add the chrome extension from the link below
   https://chrome.google.com/webstore/detail/hacktoberfest-progress-ch/djpoekehoiafngfljnoihmbnckiegolf?hl=en
 ```
 
-After installation, click on the extension icon on the right of the address bar, eenter the Github Handle to search and click on 'Check Progress'.
+After installation, click on the extension icon on the right of the address bar, enter the Github Handle to search and click on 'Check Progress'.
 
 ## Contributors
 
