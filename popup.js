@@ -1,6 +1,5 @@
 var inputHandle = document.getElementById("githubHandle");
 var btn = document.getElementById("check");
-
 $("#show").hide(); $("#invisbutton").show();
 if (document.getElementById("githubHandle").value === "") {
 	chrome.storage.sync.get("lastSearched", function (data){
@@ -32,9 +31,32 @@ btn.onclick = function() {
 	var result = document.getElementById("result");
 	if(handle != "" && handle != null) {
 		result.innerHTML = "Loading...";
-		initData(handle);
+		$.ajax({
+			url: "https://api.github.com/users/"+handle,
+			dataType: 'json',
+			success: function(jsonResponse, textStatus, jqXHR) {
+				$('#result').html("<div style='padding-top: 40px;'>User Found! Loading....</div>");
+				$("#show").hide(); $("#invisbutton").show();
+				initData(handle);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				switch(errorThrown){
+					case "404":
+						$('#result').html("Please enter a valid Github Username");
+						$("#show").hide(); $("#invisbutton").show();
+						break;
+					case "403": 
+						$('#result').html("You are going too fast! Try again in a few minutes.");
+						$("#show").hide(); $("#invisbutton").show();
+						break;
+					default: 
+						$('#result').html("Error: Try again.");
+						$("#show").hide(); $("#invisbutton").show();
+				}
+			}
+		});
 	} else {
-		result.innerHTML = "Please enter a valid Github Username";
+		result.innerHTML = "<div style='padding-top: 40px;'>Please enter a valid Github Username</div>";
 		$("#show").hide(); $("#invisbutton").show();
 	}
 }
@@ -115,7 +137,7 @@ function getXHR(url) {
 
 function initData(handle) {
 	var avatarUrl = "";
-
+	$("#show").show(); $("#invisbutton").hide();
 	getXHR(`https://api.github.com/users/${handle}`)
 	.then(function(data) {
 		avatarUrl = data.avatar_url;
@@ -144,10 +166,8 @@ function initData(handle) {
 	          content += `<div id="prList"><h2>Pull requests</h2><ul>${prs}</ul></div>`;
 
 			  document.getElementById("dialogContent").innerHTML = content;
-	  	      document.getElementById("show").style.visibility = "visible";
 	  	      $("#show").show(); $("#invisbutton").hide();
 		  	} else {
-		      document.getElementById("show").style.visibility = "collapse";
 		     $("#show").hide(); $("#invisbutton").show();
 		  	}
 
