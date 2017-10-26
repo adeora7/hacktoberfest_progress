@@ -1,6 +1,7 @@
 var inputHandle = document.getElementById("githubHandle");
 var btn = document.getElementById("check");
 
+$("#show").hide(); $("#invisbutton").show();
 if (document.getElementById("githubHandle").value === "") {
 	chrome.storage.sync.get("lastSearched", function (data){
 	  var storedHandle = data['lastSearched'];
@@ -34,6 +35,7 @@ btn.onclick = function() {
 		initData(handle);
 	} else {
 		result.innerHTML = "Please enter a valid Github Username";
+		$("#show").hide(); $("#invisbutton").show();
 	}
 }
 
@@ -143,8 +145,10 @@ function initData(handle) {
 
 			  document.getElementById("dialogContent").innerHTML = content;
 	  	      document.getElementById("show").style.visibility = "visible";
+	  	      $("#show").show(); $("#invisbutton").hide();
 		  	} else {
 		      document.getElementById("show").style.visibility = "collapse";
+		     $("#show").hide(); $("#invisbutton").show();
 		  	}
 
 		});
