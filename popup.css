@@ -53,7 +53,10 @@ body{
   cursor: pointer;
   font-size: 14px;
 }
-
+#invisbutton{
+  height: 40px;
+  width: 175px;
+}
 #check {
   box-shadow: 0 2px 30px rgba(9,11,29,0.3);
   transition: background-color 0.25s ease-in-out;
@@ -141,6 +144,3 @@ body{
     text-align: center;
 }
 
-#show{
-  visibility: collapse;
-}
