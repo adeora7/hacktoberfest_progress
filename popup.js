@@ -51,7 +51,7 @@ function getMessage(total_count) {
 		case 4:
 			return 'Just one more to go.';
 		default:
-			return 'Congratulations, you have completed hacktoberfest 2017.';
+			return 'Congratulations, you have completed hacktoberfest 2018.';
 	}
 }
 
