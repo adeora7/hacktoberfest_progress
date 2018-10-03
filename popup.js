@@ -45,8 +45,10 @@ function getMessage(total_count) {
 		case 1:
 			return 'Still long way to go.';
 		case 2:
-			return 'Awesome, you are half way through.';
+			return 'Awesome, you are almost half way through.';
 		case 3:
+			return 'Almost there.';
+		case 4:
 			return 'Just one more to go.';
 		default:
 			return 'Congratulations, you have completed hacktoberfest 2017.';
@@ -77,13 +79,7 @@ function updateMostRecentUsers(user) {
 			var html = '';
 			for (var i = 0; i < mostRecentUsers.length; i++) {
 				html +=
-					"<img id='" +
-					mostRecentUsers[i].name +
-					"' class='rounded' src='" +
-					mostRecentUsers[i].thumbnail +
-					"' alt='" +
-					mostRecentUsers[i].name +
-					"'/>";
+					`<img id='${mostRecentUsers[i].name}' class='rounded' src='${mostRecentUsers[i].thumbnail}' alt='${mostRecentUsers[i].name}'/>`;
 			}
 			var parent = document.getElementById('mostRecentUsers');
 			parent.addEventListener('click', function(e) {
@@ -122,7 +118,7 @@ function initData(handle) {
 		.then(function(data) {
 			avatarUrl = data.avatar_url;
 			return getXHR(
-				`https://api.github.com/search/issues?q=author:${handle}+type:pr+created:2017-09-30T00:00:00-12:00..2017-10-31T23:59:59-12:00+is:public`
+				`https://api.github.com/search/issues?q=author:${handle}+type:pr+created:2018-09-30T00:00:00-12:00..2018-10-31T23:59:59-12:00+is:public`
 			);
 		})
 		.then(function(data) {
@@ -133,15 +129,15 @@ function initData(handle) {
 				{ lastSearched: handle, thumbnail: avatarUrl },
 				function() {
 					var res = '';
-					res += "<img id='avatar' src='" + avatarUrl + "'/>";
-					res += "<div id='resultHandle'>" + handle + '</div>';
-					var count = (prCount > 4 ? '4' : prCount) + '/4';
-					res += "<div id='prCompleteCount'>" + count + '</div>';
+					res += `<img id='avatar' src='${avatarUrl}'/>`;
+					res += `<div id='resultHandle'>${handle}</div>`;
+					var count = (prCount > 5 ? '5' : prCount) + '/5';
+					res += `<div id='prCompleteCount'>${count}</div>`;
 					var message = getMessage(prCount);
-					res += "<div id='message'>" + message + '</div>';
+					res += `<div id='message'>${message}</div>`;
 					document.getElementById('result').innerHTML = res;
 
-					var newestPRs = prCount > 4 ? data.items.slice(0, 4) : data.items;
+					var newestPRs = prCount > 4 ? data.items.slice(0, 5) : data.items;
 					if (newestPRs.length > 0) {
 						var content = '';
 						var prs = newestPRs.map((v, i) => {
