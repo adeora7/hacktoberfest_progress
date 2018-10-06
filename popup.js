@@ -44,17 +44,17 @@ function getMessage(total_count) {
   var message = "";
   switch (total_count) {
     case 0:
-      return "It is never too late to start.";
+      return "It's never too late to start! Go and get hacking!";
     case 1:
-      return "Still long way to go.";
+      return "One down, four to go! Keep going!";
     case 2:
-      return "Awesome, you are almost half way through.";
+      return "Awesome work! You're almost halfway there!";
     case 3:
-      return "Almost there.";
+      return "Don't stop now, you're closer to the finish line!";
     case 4:
-      return "Just one more to go.";
+      return "Just one more, give it your best shot!";
     default:
-      return "Congratulations, you have completed hacktoberfest 2018.";
+      return "You did it! Congratulations for completing Hacktoberfest 2018!";
   }
 }
 
