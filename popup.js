@@ -59,7 +59,7 @@ function getMessage(total_count) {
 }
 
 function updateMostRecentUsers(user) {
-  
+
   chrome.storage.sync.get("mostRecentUsers", function(data) {
     var mostRecentUsers = data["mostRecentUsers"] || [];
     var hasUser = false;
@@ -107,6 +107,11 @@ function getXHR(url) {
     req.onreadystatechange = function() {
       if (this.status === 200 && this.readyState === 4) {
         resolve(JSON.parse(req.responseText));
+      }
+      if (this.status === 403) {
+        document.getElementById("result").innerHTML = "<div id='message' style='margin-top:10px;'>You've hit your limit, try again later.</div>";
+        document.getElementById("check").style.visibility = "collapse";
+        document.getElementById("show").style.visibility = "collapse";
       }
     };
     req.onerror = function() {
