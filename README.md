@@ -12,9 +12,7 @@ Hacktoberfest progress is a chrome extension made to check your progress in the 
 
 Click on the link below to get to the Chrome Web Store for the Hacktoberfest Progress Checker, chrome extension!
 
-```
-  [https://chrome.google.com/webstore/detail/hacktoberfest-progress-ch/djpoekehoiafngfljnoihmbnckiegolf?hl=en](https://chrome.google.com/webstore/detail/hacktoberfest-progress-ch/djpoekehoiafngfljnoihmbnckiegolf?hl=en)
-```
+[Download hacktoberfest Progress Checker](https://chrome.google.com/webstore/detail/hacktoberfest-progress-ch/djpoekehoiafngfljnoihmbnckiegolf?hl=en)
 
 After installation, click on the extension icon on the right side of your address bar and then enter your Github username and then click on 'Check Progress'. You will get to see how many Pull Requests you have made and how many were accepted!
 
