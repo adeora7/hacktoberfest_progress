@@ -14,6 +14,20 @@ Click [here](https://chrome.google.com/webstore/detail/hacktoberfest-progress-ch
 
 After installation, click on the extension icon on the right side of your address bar and then enter your Github username and then click on 'Check Progress'. You will get to see how many Pull Requests you have made and how many were accepted!
 
+## How to Run Tests
+the project is now setup to have basic tests, and these tests will run on CircleCI.
+
+to run the tests you must have some form of node pacakge manager(npm or yarn)
+
+run:
+```
+yarn install
+```
+and then
+```
+yarn test
+```
+
 ## Contributors
 
 Thanks goes to these wonderful people for their contributions:
