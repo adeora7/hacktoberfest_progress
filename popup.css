@@ -1,12 +1,8 @@
 body{
   min-width: 300px;
   min-height: 400px;
-  background-color: #29328f;
+  background-color: #411e2f;
   color: white;
-  background-image: url('flourish-top.svg');
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  background-size: 50%;
 }
 
 #header{
@@ -17,7 +13,8 @@ body{
   margin-top: 65px;
 }
 #header > a >img{
-  width: 300px;
+  width: 70%;
+  margin-top: -50px;
 }
 
 #main{
@@ -45,22 +42,17 @@ body{
 .button{
   height: 40px;
   width: 175px;
-  background-color: #fe615f;
-  border: 0px;
-  border-radius: 3px;
+  background-color: #21ffff;
+  border: 3px solid #21ffff;
+  border-radius: 4px;
   outline: none;
-  color: white;
+  color: #411e2f;
   cursor: pointer;
   font-size: 14px;
 }
-
-#check {
-  box-shadow: 0 2px 30px rgba(9,11,29,0.3);
-  transition: background-color 0.25s ease-in-out;
-}
-#check:hover {
-  background-color: #ff4946;
-  color: #fff;
+.button:hover {
+  border-color: #fff;
+  background-color: #fff;
 }
 
 #newAccount{
@@ -82,7 +74,7 @@ body{
   color: white;
   border: 0;
   border-bottom: 1px solid white;
-  background: #29328f;
+  background: #411e2f;
   margin-bottom: 10px;
   outline: none;
   transition : border 500ms ease-out;
@@ -114,7 +106,11 @@ body{
   text-align: center;
 }
 
-#prList ul{
+#prList h2 {
+  color: #fff;
+}
+
+#prList ul {
   padding-left: 0;
 }
 
@@ -122,8 +118,12 @@ body{
   list-style: none;
 }
 
-#prList li a{
-  color: #29328f;
+#prList li a {
+  color: #21ffff;
+}
+
+#prList li a:hover {
+  color: #fff;
 }
 
 #overlay{
@@ -139,6 +139,7 @@ body{
 #dialog{
     border: 0px;
     text-align: center;
+    background-color: #411e2f;
 }
 
 #show{
