@@ -155,7 +155,7 @@ function initData(handle) {
                 v["number"]
               } - ${v["title"]}</a></li>`;
             });
-            content += `<div id="prList"><h2>Pull requests</h2><ul>${prs}</ul></div>`;
+            content += `<div id="prList"><h2>Pull requests</h2><ul>${prs.join("")}</ul></div>`;
 
             document.getElementById("dialogContent").innerHTML = content;
             document.getElementById("show").style.visibility = "visible";
