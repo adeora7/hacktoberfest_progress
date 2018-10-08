@@ -33,9 +33,15 @@ body{
 }
 
 .rounded{
-  border-radius: 25px;
+  border-radius: 15px;
   cursor: pointer;
   margin-right: 5px;
+  height: 30px;
+  width: 30px;
+}
+
+.active {
+  border-radius: 25px;
   height: 55px;
   width: 55px;
 }

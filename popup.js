@@ -65,13 +65,16 @@ function updateMostRecentUsers(user) {
     var hasUser = false;
     if (mostRecentUsers.length > 0) {
       for (var i = 0; i < mostRecentUsers.length; i++) {
+        mostRecentUsers[i].active = false;
         if (mostRecentUsers[i].name === user.name) {
           hasUser = true;
+          mostRecentUsers[i].active = true;
         }
       }
     }
 
     if (!hasUser) {
+      user.active = true;
       mostRecentUsers.push(user);
     }
 
@@ -82,7 +85,8 @@ function updateMostRecentUsers(user) {
     chrome.storage.sync.set({ mostRecentUsers: mostRecentUsers }, function() {
       var html = "";
       for (var i = 0; i < mostRecentUsers.length; i++) {
-        html += `<img id='${mostRecentUsers[i].name}' class='rounded' src='${
+        var active = mostRecentUsers[i].active ? "active" : "";
+        html += `<img id='${mostRecentUsers[i].name}' class='rounded ${active}' src='${
           mostRecentUsers[i].thumbnail
         }' alt='${mostRecentUsers[i].name}'/>`;
       }
