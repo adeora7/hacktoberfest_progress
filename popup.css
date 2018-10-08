@@ -170,13 +170,14 @@ body{
 
 .progress-bar {
   width: 100%;
-  background-color: #755866;
+  background-color: #000;
   border-radius: 5px;
   margin: .5rem 0;
+  border: solid 1px #fff;
 }
 
 .progress-bar--color {
-  background-color: #21ffff;
+  background-color:#310e1f;
   height: 1.5rem;
   border-radius: 5px;
 }
