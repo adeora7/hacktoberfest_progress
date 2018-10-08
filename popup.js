@@ -139,10 +139,11 @@ function initData(handle) {
         { lastSearched: handle, thumbnail: avatarUrl },
         function() {
           var res = "";
-          res += `<img id='avatar' src='${avatarUrl}'/>`;
-          res += `<div id='resultHandle'>${handle}</div>`;
-          var count = (prCount > 5 ? "5" : prCount) + "/5";
-          res += `<div id='prCompleteCount'>${count}</div>`;
+          res += `<div id='resultHandle'>${handle}s progress:</div>`;
+          var count = (prCount > 5 ? "5" : prCount) + " / 5";
+          var progress = prCount * 20;
+          // res += ``;
+          res += `<div class='progress-bar'><div id='prCompleteCount'>${count}</div><div class='progress-bar--color' style='width:${progress}%'></div></div>`
           var message = getMessage(prCount);
           res += `<div id='message'>${message}</div>`;
           document.getElementById("result").innerHTML = res;
