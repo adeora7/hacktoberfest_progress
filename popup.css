@@ -48,7 +48,10 @@ body{
   outline: none;
   color: #411e2f;
   cursor: pointer;
-  font-size: 14px;
+  /* Closes #74: Change the font size from 14 to 17 */
+  font-size: 17px;
+  /* Closes #74: Added font-family Oswald to button */
+  font-family: 'Oswald', sans-serif;
 }
 .button:hover {
   border-color: #fff;
@@ -69,7 +72,8 @@ body{
   height: 30px;
   width: 160px;
   padding: 5px;
-  font-size: 16px;
+  /* Closes #74: Change the font size from 16 to 22 */
+  font-size: 22px;
   text-align: center;
   color: white;
   border: 0;
@@ -78,6 +82,8 @@ body{
   margin-bottom: 10px;
   outline: none;
   transition : border 500ms ease-out;
+  /* Closes #74: Added font-family Oswald to githubHandle */
+  font-family: 'Oswald', sans-serif;
 }
 
 #githubHandle::placeholder,
@@ -87,12 +93,16 @@ body{
 
 #result{
   margin-top: 10px;
+  /* Closes #74: Added font-family Oswald to githubHandle */
+  font-family: 'Oswald', sans-serif;
 }
 
 #resultHandle{
   text-decoration: underline;
   margin-bottom: 10px;
   font-size: 16px;
+  /* Closes #74: Added font-family Oswald to resultHandle */
+  font-family: 'Oswald', sans-serif;
 }
 
 #prCompleteCount{
