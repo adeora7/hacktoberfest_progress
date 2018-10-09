@@ -180,3 +180,21 @@ body{
   height: 1.5rem;
   border-radius: 5px;
 }
+
+
+/* Animate in the profile pictues */
+.profiles .active {
+   animation: show .7s ease-out forwards;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+   
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
