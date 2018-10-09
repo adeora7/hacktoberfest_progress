@@ -39,128 +39,132 @@ btn.onclick = function() {
     result.innerHTML = "Please enter a valid Github Username";
   }
 };
-
-function getMessage(total_count) {
-  var message = "";
-  switch (total_count) {
-    case 0:
-      return "It is never too late to start.";
-    case 1:
-      return "Still long way to go.";
-    case 2:
-      return "Awesome, you are almost half way through.";
-    case 3:
-      return "Almost there.";
-    case 4:
-      return "Just one more to go.";
-    default:
-      return "Congratulations, you have completed hacktoberfest 2018.";
-  }
-}
-
-function updateMostRecentUsers(user) {
-  
-  chrome.storage.sync.get("mostRecentUsers", function(data) {
-    var mostRecentUsers = data["mostRecentUsers"] || [];
-    var hasUser = false;
-    if (mostRecentUsers.length > 0) {
-      for (var i = 0; i < mostRecentUsers.length; i++) {
-        if (mostRecentUsers[i].name === user.name) {
-          hasUser = true;
+module.exports = {
+    getMessage(total_count) {
+        switch (total_count) {
+            case 0:
+            return "It is never too late to start.";
+            case 1:
+            return "Still long way to go.";
+            case 2:
+            return "Awesome, you are almost half way through.";
+            case 3:
+            return "Almost there.";
+            case 4:
+            return "Just one more to go.";
+            default:
+            return "Congratulations, you have completed hacktoberfest 2018.";
         }
-      }
-    }
+    },
 
-    if (!hasUser) {
-      mostRecentUsers.push(user);
-    }
+    updateMostRecentUsers(user) {
+        chrome.storage.sync.get("mostRecentUsers", function (data) {
+            var mostRecentUsers = data["mostRecentUsers"] || [];
+            var hasUser = false;
+            if (mostRecentUsers.length > 0) {
+                for (var i = 0; i < mostRecentUsers.length; i++) {
+                    if (mostRecentUsers[i].name === user.name) {
+                        hasUser = true;
+                    }
+                }
+            }
 
-    if (mostRecentUsers.length > 5) {
-      mostRecentUsers.shift();
-    }
+            if (!hasUser) {
+                mostRecentUsers.push(user);
+            }
 
-    chrome.storage.sync.set({ mostRecentUsers: mostRecentUsers }, function() {
-      var html = "";
-      for (var i = 0; i < mostRecentUsers.length; i++) {
-        html += `<img id='${mostRecentUsers[i].name}' class='rounded' src='${
-          mostRecentUsers[i].thumbnail
-        }' alt='${mostRecentUsers[i].name}'/>`;
-      }
-      var parent = document.getElementById("mostRecentUsers");
-      parent.addEventListener("click", function(e) {
-        setData(e.target.id);
-      });
-      parent.innerHTML = html;
-    });
-  });
-}
+            if (mostRecentUsers.length > 5) {
+                mostRecentUsers.shift();
+            }
 
-function setData(handle) {
-  document.getElementById("githubHandle").value = handle;
-  initData(handle);
-}
-
-function getXHR(url) {
-  return new Promise(function(resolve, reject) {
-    var req = new XMLHttpRequest();
-    req.open("GET", url, true);
-    req.onreadystatechange = function() {
-      if (this.status === 200 && this.readyState === 4) {
-        resolve(JSON.parse(req.responseText));
-      }
-    };
-    req.onerror = function() {
-      reject(Error("Network Error"));
-    };
-    req.send();
-  });
-}
-
-function initData(handle) {
-  var avatarUrl = "";
-
-  getXHR(`https://api.github.com/users/${handle}`)
-    .then(function(data) {
-      avatarUrl = data.avatar_url;
-      return getXHR(
-        `https://api.github.com/search/issues?q=author:${handle}+type:pr+created:2018-09-30T00:00:00-12:00..2018-10-31T23:59:59-12:00+is:public`
-      );
-    })
-    .then(function(data) {
-      var prCount = data.items.length || 0;
-
-      updateMostRecentUsers({ name: handle, thumbnail: avatarUrl });
-      chrome.storage.sync.set(
-        { lastSearched: handle, thumbnail: avatarUrl },
-        function() {
-          var res = "";
-          res += `<img id='avatar' src='${avatarUrl}'/>`;
-          res += `<div id='resultHandle'>${handle}</div>`;
-          var count = (prCount > 5 ? "5" : prCount) + "/5";
-          res += `<div id='prCompleteCount'>${count}</div>`;
-          var message = getMessage(prCount);
-          res += `<div id='message'>${message}</div>`;
-          document.getElementById("result").innerHTML = res;
-
-          var newestPRs = prCount > 4 ? data.items.slice(0, 5) : data.items;
-          if (newestPRs.length > 0) {
-            var content = "";
-            var prs = newestPRs.map((v, i) => {
-              return `<li><a target="_blank" href="${v["html_url"]}">#${
-                v["number"]
-              } - ${v["title"]}</a></li>`;
+            chrome.storage.sync.set({
+                mostRecentUsers: mostRecentUsers
+            }, function () {
+                var html = "";
+                for (var i = 0; i < mostRecentUsers.length; i++) {
+                    html += `<img id='${mostRecentUsers[i].name}' class='rounded' src='${
+                    mostRecentUsers[i].thumbnail}' alt='${mostRecentUsers[i].name}'/>`;
+                }
+                var parent = document.getElementById("mostRecentUsers");
+                parent.addEventListener("click", function (e) {
+                    setData(e.target.id);
+                });
+                parent.innerHTML = html;
             });
-            content += `<div id="prList"><h2>Pull requests</h2><ul>${prs}</ul></div>`;
+        });
+    },
 
-            document.getElementById("dialogContent").innerHTML = content;
-            document.getElementById("show").style.visibility = "visible";
-          } else {
-            document.getElementById("show").style.visibility = "collapse";
-          }
-        }
-      );
-    })
-    .catch(function(error) {
-      console.error(error);
-    });
+    setData(handle) {
+        document.getElementById("githubHandle").value = handle;
+        initData(handle);
+    },
+
+    getXHR(url) {
+        return new Promise(function (resolve, reject) {
+            var req = new XMLHttpRequest();
+            req.open("GET", url, true);
+            req.onreadystatechange = function () {
+                if (this.status === 200 && this.readyState === 4) {
+                    resolve(JSON.parse(req.responseText));
+                }
+            };
+            req.onerror = function () {
+                reject(Error("Network Error"));
+            };
+            req.send();
+        });
+    },
+
+    initData(handle) {
+        var avatarUrl = "";
+
+        getXHR(`https://api.github.com/users/${handle}`)
+            .then(function (data) {
+                avatarUrl = data.avatar_url;
+                return getXHR(
+                    `https://api.github.com/search/issues?q=author:${handle}+type:pr+created:2018-09-30T00:00:00-12:00..2018-10-31T23:59:59-12:00+is:public`
+                );
+            })
+            .then(function (data) {
+                var prCount = data.items.length || 0;
+
+                updateMostRecentUsers({
+                    name: handle,
+                    thumbnail: avatarUrl
+                });
+
+                chrome.storage.sync.set({
+                        lastSearched: handle,
+                        thumbnail: avatarUrl
+                    },
+                    function () {
+                        var res = "";
+                        res += `<img id='avatar' src='${avatarUrl}'/>`;
+                        res += `<div id='resultHandle'>${handle}</div>`;
+                        var count = (prCount > 5 ? "5" : prCount) + "/5";
+                        res += `<div id='prCompleteCount'>${count}</div>`;
+                        var message = getMessage(prCount);
+                        res += `<div id='message'>${message}</div>`;
+                        document.getElementById("result").innerHTML = res;
+
+                        var newestPRs = prCount > 4 ? data.items.slice(0, 5) : data.items;
+                        if (newestPRs.length > 0) {
+                            var content = "";
+                            var prs = newestPRs.map((v, i) => {
+                                return `<li><a target="_blank" href="${v["html_url"]}">#${v["number"]} - ${v["title"]}</a></li>`;
+                            });
+                            content += `<div id="prList"><h2>Pull requests</h2><ul>${prs}</ul></div>`;
+
+                            document.getElementById("dialogContent").innerHTML = content;
+                            document.getElementById("show").style.visibility = "visible";
+                        } else {
+                            document.getElementById("show").style.visibility = "collapse";
+                        }
+                    }
+                );
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    }
 }
