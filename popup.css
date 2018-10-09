@@ -1,27 +1,25 @@
+html {
+  font-size: 14px;
+}
+
 body{
   min-width: 300px;
   min-height: 400px;
-  background-color: #29328f;
+  background-color: #411e2f;
   color: white;
-  background-image: url('flourish-top.svg');
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  background-size: 50%;
 }
 
 #header{
-  width: 100%;
-  font-size: 25px;
   text-align: center;
-  height: 20%;
-  margin-top: 65px;
+  padding: 1rem;
 }
 #header > a >img{
-  width: 300px;
+  height: 150px;
+  width: auto;
 }
 
 #main{
-  margin-top: 10px;
+  padding: 1rem;
 }
 
 .eachSavedAccount{
@@ -42,25 +40,29 @@ body{
   width: 30px;
 }
 
-.button{
-  height: 40px;
-  width: 175px;
-  background-color: #fe615f;
-  border: 0px;
-  border-radius: 3px;
-  outline: none;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
+.active {
+  border-radius: 25px;
+  height: 55px;
+  width: 55px;
 }
 
-#check {
-  box-shadow: 0 2px 30px rgba(9,11,29,0.3);
-  transition: background-color 0.25s ease-in-out;
+.button{
+  height: 35px;
+  width: 175px;
+  background-color: #21ffff;
+  border: 3px solid #21ffff;
+  border-radius: 4px;
+  outline: none;
+  color: #411e2f;
+  cursor: pointer;
+  /* Closes #74: Change the font size from 14 to 17 */
+  font-size: 17px;
+  /* Closes #74: Added font-family Oswald to button */
+  font-family: 'Oswald', sans-serif;
 }
-#check:hover {
-  background-color: #ff4946;
-  color: #fff;
+.button:hover {
+  border-color: #fff;
+  background-color: #fff;
 }
 
 #newAccount{
@@ -77,15 +79,18 @@ body{
   height: 30px;
   width: 160px;
   padding: 5px;
-  font-size: 16px;
+  /* Closes #74: Change the font size from 16 to 22 */
+  font-size: 22px;
   text-align: center;
   color: white;
   border: 0;
   border-bottom: 1px solid white;
-  background: #29328f;
+  background: #411e2f;
   margin-bottom: 10px;
   outline: none;
   transition : border 500ms ease-out;
+  /* Closes #74: Added font-family Oswald to githubHandle */
+  font-family: 'Oswald', sans-serif;
 }
 
 #githubHandle::placeholder,
@@ -94,19 +99,24 @@ body{
 }
 
 #result{
-  margin-top: 10px;
+  margin: 1rem 0;
+  /* Closes #74: Added font-family Oswald to githubHandle */
+  font-family: 'Oswald', sans-serif;
 }
 
 #resultHandle{
-  text-decoration: underline;
   margin-bottom: 10px;
   font-size: 16px;
+  /* Closes #74: Added font-family Oswald to resultHandle */
+  font-family: 'Oswald', sans-serif;
 }
 
 #prCompleteCount{
-  font-size: 20px;
+  position: absolute;
+  text-align: center;
+  left: 45%;
+  font-size: 1rem;
   font-weight: 700;
-  margin-bottom: 10px;
 }
 
 #message{
@@ -114,7 +124,11 @@ body{
   text-align: center;
 }
 
-#prList ul{
+#prList h2 {
+  color: #fff;
+}
+
+#prList ul {
   padding-left: 0;
 }
 
@@ -122,8 +136,14 @@ body{
   list-style: none;
 }
 
-#prList li a{
-  color: #29328f;
+#prList li a {
+  color: #21ffff;
+  text-decoration: none;
+  font-size: .9rem;
+}
+
+#prList li a:hover {
+  color: #fff;
 }
 
 #overlay{
@@ -139,8 +159,24 @@ body{
 #dialog{
     border: 0px;
     text-align: center;
+    background-color: #411e2f;
+    margin: 0 auto;
+    width: 80%;
 }
 
 #show{
   visibility: collapse;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #755866;
+  border-radius: 5px;
+  margin: .5rem 0;
+}
+
+.progress-bar--color {
+  background-color: #21ffff;
+  height: 1.5rem;
+  border-radius: 5px;
 }

@@ -1,5 +1,5 @@
 # Hacktoberfest Progress
-Hacktoberfest progress is a chrome extension made to check your progress in the Hacktoberfest organised by DigitalOcean. It tells you how far you are from your goal and which of your Pull Requests were counted so far.
+Hacktoberfest progress is a chrome extension made to check your progress in the [Hacktoberfest](https://hacktoberfest.digitalocean.com) organised by DigitalOcean. It tells you how far you are from your goal and which of your Pull Requests were counted so far.
 
 ## How to Contribute?
 
@@ -42,4 +42,4 @@ Thanks goes to these wonderful people for their contributions:
 
 | [<img src="https://avatars3.githubusercontent.com/u/9638595?s=400&v=4" width="100px;"/><br /><sub>Abhishek Deora</sub>](https://github.com/adeora7/) | [<img src="https://avatars1.githubusercontent.com/u/3146916?s=400&v=4" width="100px;"/><br /><sub>Duy Nguyen</sub>](https://github.com/zuik) | [<img src="https://avatars0.githubusercontent.com/u/21180050?s=400&v=4" width="100px;"/><br /><sub>Will Bray</sub>](https://github.com/raindogg) | [<img src="https://avatars0.githubusercontent.com/u/5430873?s=400&v=4" width="100px;"/><br /><sub>Luke Taylor</sub>](https://github.com/lmcjt37) | [<img src="https://avatars3.githubusercontent.com/u/4543453?s=400&v=4" width="100px;"/><br /><sub>Andreas Kleinbub</sub>](https://github.com/ehnydeel) | [<img src="https://avatars3.githubusercontent.com/u/5253753?s=400&v=4" width="100px;"/><br /><sub>Bhavesh Gohel</sub>](https://github.com/bhaveshgohel) | [<img src="https://avatars3.githubusercontent.com/u/15846964?s=400&v=4" width="100px;"/><br /><sub>Rafael Klaessen</sub>](https://github.com/rafaelklaessen) |
 | :---: | :---: | :---: | :---: | :--: | :--: | :--: |
-| [<img src="https://avatars1.githubusercontent.com/u/499513?s=400&v=4" width="100px;"/><br /><sub>Richard Robinson</sub>](https://github.com/kincade71) | [<img src="https://avatars2.githubusercontent.com/u/3191489?v=4" width="100px;"/><br /><sub>Fredrik Mäkilä</sub>](https://github.com/GitHug) |
+| [<img src="https://avatars1.githubusercontent.com/u/499513?s=400&v=4" width="100px;"/><br /><sub>Richard Robinson</sub>](https://github.com/kincade71) | [<img src="https://avatars2.githubusercontent.com/u/3191489?v=4" width="100px;"/><br /><sub>Fredrik Mäkilä</sub>](https://github.com/GitHug) | [<img src="https://avatars3.githubusercontent.com/u/7880824?s=460&v=4" width="100px;"/><br /><sub>Joseph Allen</sub>](https://github.com/GitHug) | 

@@ -1,14 +1,13 @@
 const assert = require("assert");
 const getMessage = require("../popup").getMessage;
-const getXHR = require("../popup").getXHR;
 
 const messages = [
-    "It is never too late to start.",
-    "Still long way to go.",
-    "Awesome, you are almost half way through.",
-    "Almost there.",
-    "Just one more to go.",
-    "Congratulations, you have completed hacktoberfest 2018."
+    "It's never too late to start! Go and get hacking!",
+    "One down, four to go! Keep going!",
+    "Awesome work! You're almost halfway there!",
+    "Don't stop now, you're closer to the finish line!",
+    "Just one more, give it your best shot!",
+    "You did it! Congratulations for completing Hacktoberfest 2018!"
 ];
 
 function randomTotalCount(min, max) {

@@ -2,17 +2,17 @@ module.exports = {
     getMessage(total_count) {
         switch (total_count) {
             case 0:
-            return "It is never too late to start.";
+            return "It's never too late to start! Go and get hacking!";;
             case 1:
-            return "Still long way to go.";
+            return "One down, four to go! Keep going!";
             case 2:
-            return "Awesome, you are almost half way through.";
+            return "Awesome work! You're almost halfway there!";
             case 3:
-            return "Almost there.";
+            return "Don't stop now, you're closer to the finish line!";
             case 4:
-            return "Just one more to go.";
+            return "Just one more, give it your best shot!";
             default:
-            return "Congratulations, you have completed hacktoberfest 2018.";
+            return "You did it! Congratulations for completing Hacktoberfest 2018!";
         }
     },
 
@@ -22,13 +22,16 @@ module.exports = {
             var hasUser = false;
             if (mostRecentUsers.length > 0) {
                 for (var i = 0; i < mostRecentUsers.length; i++) {
+                    mostRecentUsers[i].active = false;
                     if (mostRecentUsers[i].name === user.name) {
                         hasUser = true;
+                        mostRecentUsers[i].active = true;
                     }
                 }
             }
 
             if (!hasUser) {
+                user.active = true;
                 mostRecentUsers.push(user);
             }
 
@@ -41,7 +44,8 @@ module.exports = {
             }, function () {
                 var html = "";
                 for (var i = 0; i < mostRecentUsers.length; i++) {
-                    html += `<img id='${mostRecentUsers[i].name}' class='rounded' src='${
+                    var active = mostRecentUsers[i].active ? "active" : "";
+                    html += `<img id='${mostRecentUsers[i].name}' class='rounded ${active}' src='${
                     mostRecentUsers[i].thumbnail}' alt='${mostRecentUsers[i].name}'/>`;
                 }
                 var parent = document.getElementById("mostRecentUsers");
@@ -65,6 +69,11 @@ module.exports = {
             req.onreadystatechange = function () {
                 if (this.status === 200 && this.readyState === 4) {
                     resolve(JSON.parse(req.responseText));
+                }
+                if (this.status === 403) {
+                    document.getElementById("result").innerHTML = "<div id='message' style='margin-top:10px;'>You've hit your limit, try again later.</div>";
+                    document.getElementById("check").style.visibility = "collapse";
+                    document.getElementById("show").style.visibility = "collapse";
                 }
             };
             req.onerror = function () {
@@ -98,10 +107,11 @@ module.exports = {
                     },
                     function () {
                         var res = "";
-                        res += `<img id='avatar' src='${avatarUrl}'/>`;
-                        res += `<div id='resultHandle'>${handle}</div>`;
-                        var count = (prCount > 5 ? "5" : prCount) + "/5";
-                        res += `<div id='prCompleteCount'>${count}</div>`;
+                        res += `<div id='resultHandle'>${handle}s progress:</div>`;
+                        var count = (prCount > 5 ? "5" : prCount) + " / 5";
+                        var progress = prCount * 20;
+                        // res += ``;
+                        res += `<div class='progress-bar'><div id='prCompleteCount'>${count}</div><div class='progress-bar--color' style='width:${progress}%'></div></div>`
                         var message = getMessage(prCount);
                         res += `<div id='message'>${message}</div>`;
                         document.getElementById("result").innerHTML = res;
@@ -112,7 +122,7 @@ module.exports = {
                             var prs = newestPRs.map((v, i) => {
                                 return `<li><a target="_blank" href="${v["html_url"]}">#${v["number"]} - ${v["title"]}</a></li>`;
                             });
-                            content += `<div id="prList"><h2>Pull requests</h2><ul>${prs}</ul></div>`;
+                            content += `<div id="prList"><h2>Pull requests</h2><ul>${prs.join("")}</ul></div>`;
 
                             document.getElementById("dialogContent").innerHTML = content;
                             document.getElementById("show").style.visibility = "visible";
