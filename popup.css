@@ -179,4 +179,9 @@ body{
   background-color: #21ffff;
   height: 1.5rem;
   border-radius: 5px;
+  animation: expandWidth 2s linear;
+}
+
+@keyframes expandWidth {
+   0% { width: 0; }
 }
