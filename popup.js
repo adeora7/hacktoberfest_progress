@@ -1,3 +1,4 @@
+// Global Variables / HTML Elements
 var inputHandle = document.getElementById("githubHandle");
 var btn = document.getElementById("check");
 
@@ -19,17 +20,17 @@ inputHandle.onkeydown = function(event) {
   }
 };
 
-document.getElementById("show").onclick = function() {
+document.getElementById("show").onclick = () => {
   document.getElementById("dialog").showModal();
   document.getElementById("overlay").style.visibility = "visible";
 };
 
-document.getElementById("closeBtn").onclick = function() {
+document.getElementById("closeBtn").onclick = () => {
   document.getElementById("dialog").close();
   document.getElementById("overlay").style.visibility = "collapse";
 };
 
-btn.onclick = function() {
+btn.onclick = () => {
   var handle = document.getElementById("githubHandle").value;
   var result = document.getElementById("result");
   if (handle != "" && handle != null) {
@@ -40,7 +41,7 @@ btn.onclick = function() {
   }
 };
 
-function getMessage(total_count) {
+const getMessage = total_count => {
   var message = "";
   switch (total_count) {
     case 0:
@@ -56,10 +57,9 @@ function getMessage(total_count) {
     default:
       return "You did it! Congratulations for completing Hacktoberfest 2018!";
   }
-}
+};
 
-function updateMostRecentUsers(user) {
-
+const updateMostRecentUsers = user => {
   chrome.storage.sync.get("mostRecentUsers", function(data) {
     var mostRecentUsers = data["mostRecentUsers"] || [];
     var hasUser = false;
@@ -86,7 +86,9 @@ function updateMostRecentUsers(user) {
       var html = "";
       for (var i = 0; i < mostRecentUsers.length; i++) {
         var active = mostRecentUsers[i].active ? "active" : "";
-        html += `<img id='${mostRecentUsers[i].name}' class='rounded ${active}' src='${
+        html += `<img id='${
+          mostRecentUsers[i].name
+        }' class='rounded ${active}' src='${
           mostRecentUsers[i].thumbnail
         }' alt='${mostRecentUsers[i].name}'/>`;
       }
@@ -97,14 +99,14 @@ function updateMostRecentUsers(user) {
       parent.innerHTML = html;
     });
   });
-}
+};
 
-function setData(handle) {
+const setData = handle => {
   document.getElementById("githubHandle").value = handle;
   initData(handle);
-}
+};
 
-function getXHR(url) {
+const getXHR = url => {
   return new Promise(function(resolve, reject) {
     var req = new XMLHttpRequest();
     req.open("GET", url, true);
@@ -113,7 +115,8 @@ function getXHR(url) {
         resolve(JSON.parse(req.responseText));
       }
       if (this.status === 403) {
-        document.getElementById("result").innerHTML = "<div id='message' style='margin-top:10px;'>You've hit your limit, try again later.</div>";
+        document.getElementById("result").innerHTML =
+          "<div id='message' style='margin-top:10px;'>You've hit your limit, try again later.</div>";
         document.getElementById("check").style.visibility = "collapse";
         document.getElementById("show").style.visibility = "collapse";
       }
@@ -123,9 +126,9 @@ function getXHR(url) {
     };
     req.send();
   });
-}
+};
 
-function initData(handle) {
+const initData = handle => {
   var avatarUrl = "";
 
   getXHR(`https://api.github.com/users/${handle}`)
@@ -147,7 +150,7 @@ function initData(handle) {
           var count = (prCount > 5 ? "5" : prCount) + " / 5";
           var progress = prCount * 20;
           // res += ``;
-          res += `<div class='progress-bar'><div id='prCompleteCount'>${count}</div><div class='progress-bar--color' style='width:${progress}%'></div></div>`
+          res += `<div class='progress-bar'><div id='prCompleteCount'>${count}</div><div class='progress-bar--color' style='width:${progress}%'></div></div>`;
           var message = getMessage(prCount);
           res += `<div id='message'>${message}</div>`;
           document.getElementById("result").innerHTML = res;
@@ -160,7 +163,9 @@ function initData(handle) {
                 v["number"]
               } - ${v["title"]}</a></li>`;
             });
-            content += `<div id="prList"><h2>Pull requests</h2><ul>${prs.join("")}</ul></div>`;
+            content += `<div id="prList"><h2>Pull requests</h2><ul>${prs.join(
+              ""
+            )}</ul></div>`;
 
             document.getElementById("dialogContent").innerHTML = content;
             document.getElementById("show").style.visibility = "visible";
@@ -170,7 +175,7 @@ function initData(handle) {
         }
       );
     })
-    .catch(function(error) {
+    .catch(error => {
       console.error(error);
     });
-}
+};
