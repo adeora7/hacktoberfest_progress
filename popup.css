@@ -53,7 +53,8 @@ body{
   border: 3px solid #21ffff;
   border-radius: 4px;
   outline: none;
-  color: #411e2f;
+  /* Closes #81 changed the color of button acording to the background color */
+  color: #51263b;
   cursor: pointer;
   /* Closes #74: Change the font size from 14 to 17 */
   font-size: 17px;
