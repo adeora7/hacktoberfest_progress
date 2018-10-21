@@ -117,6 +117,10 @@ function getXHR(url) {
         document.getElementById("check").style.visibility = "collapse";
         document.getElementById("show").style.visibility = "collapse";
       }
+      if (this.status === 404) {
+        document.getElementById("result").innerHTML = "<div id='message' style='margin-top:10px;'>User does not exist on GitHub :(</div>";
+        document.getElementById("show").style.visibility = "collapse";
+      }
     };
     req.onerror = function() {
       reject(Error("Network Error"));
