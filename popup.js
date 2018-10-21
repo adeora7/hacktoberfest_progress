@@ -147,10 +147,10 @@ function initData(handle) {
         { lastSearched: handle, thumbnail: avatarUrl },
         function() {
           var res = "";
-          res += `<div id='resultHandle'>${handle}s progress:</div>`;
+          var showS = handle[handle.length - 1] !== 's';
+          res += `<div id='resultHandle'>${handle}'${showS ? 's' : ''} progress:</div>`;
           var count = (prCount > 5 ? "5" : prCount) + " / 5";
           var progress = prCount * 20;
-          // res += ``;
           res += `<div class='progress-bar'><div id='prCompleteCount'>${count}</div><div class='progress-bar--color' style='width:${progress}%'></div></div>`
           var message = getMessage(prCount);
           res += `<div id='message'>${message}</div>`;
