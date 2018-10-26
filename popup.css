@@ -49,11 +49,11 @@ body{
 .button{
   height: 35px;
   width: 175px;
-  background-color: #21ffff;
-  border: 3px solid #21ffff;
+  background-color: #cc1d43;
+  border: 3px solid #cc1d43;
   border-radius: 4px;
   outline: none;
-  color: #411e2f;
+  color: #fff;
   cursor: pointer;
   /* Closes #74: Change the font size from 14 to 17 */
   font-size: 17px;
@@ -77,12 +77,13 @@ body{
 
 #githubHandle{
   height: 30px;
+  letter-spacing: 1.5px;
   width: 160px;
   padding: 5px;
   /* Closes #74: Change the font size from 16 to 22 */
   font-size: 22px;
   text-align: center;
-  color: white;
+  color: #21ffff;
   border: 0;
   border-bottom: 1px solid white;
   background: #411e2f;
