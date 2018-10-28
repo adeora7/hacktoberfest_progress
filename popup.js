@@ -84,12 +84,20 @@ function updateMostRecentUsers(user) {
 
     chrome.storage.sync.set({ mostRecentUsers: mostRecentUsers }, function() {
       var html = "";
+
       for (var i = 0; i < mostRecentUsers.length; i++) {
-        var active = mostRecentUsers[i].active ? "active" : "";
-        html += `<img id='${mostRecentUsers[i].name}' class='rounded ${active}' src='${
-          mostRecentUsers[i].thumbnail
-        }' alt='${mostRecentUsers[i].name}'/>`;
+        var user = mostRecentUsers[i];
+        var active = user.active ? "active" : "";
+        
+        if (active) html += `<a href='${user.profile}' target='_blank'>`;
+
+        html += `<img id='${user.name}' class='rounded ${active}' src='${
+          user.thumbnail
+        }' alt='${user.name}'/>`;
+
+        if (active) html += '</a>';
       }
+
       var parent = document.getElementById("mostRecentUsers");
       parent.addEventListener("click", function(e) {
         setData(e.target.id);
@@ -127,10 +135,12 @@ function getXHR(url) {
 
 function initData(handle) {
   var avatarUrl = "";
+  var githubProfileUrl = "";
 
   getXHR(`https://api.github.com/users/${handle}`)
     .then(function(data) {
       avatarUrl = data.avatar_url;
+      githubProfileUrl = data.html_url;
       return getXHR(
         `https://api.github.com/search/issues?q=author:${handle}+type:pr+created:2018-09-30T00:00:00-12:00..2018-10-31T23:59:59-12:00+is:public`
       );
@@ -138,7 +148,7 @@ function initData(handle) {
     .then(function(data) {
       var prCount = data.items.length || 0;
 
-      updateMostRecentUsers({ name: handle, thumbnail: avatarUrl });
+      updateMostRecentUsers({ name: handle, profile: githubProfileUrl, thumbnail: avatarUrl });
       chrome.storage.sync.set(
         { lastSearched: handle, thumbnail: avatarUrl },
         function() {
