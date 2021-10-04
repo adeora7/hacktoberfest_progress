@@ -17,7 +17,7 @@ After installation, click on the extension icon on the right side of your addres
 ## How to Run Tests
 the project is now setup to have basic tests, and these tests will run on CircleCI.
 
-to run the tests you must have some form of node pacakge manager(npm or yarn)
+to run the tests you must have some form of node package manager(npm or yarn)
 
 run:
 ```
